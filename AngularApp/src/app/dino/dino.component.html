@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s5">
+            <form #dinoForm="ngForm" (ngSubmit)="onSubmit(dinoForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="dinoService.selectedDino._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="fullName" #name="ngModel" [(ngModel)]="dinoService.selectedDino.fullName" placeholder="Entre ton nom" required>
+                  <label>Nom :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="age" #name="ngModel" [(ngModel)]="dinoService.selectedDino.age" placeholder="Votre age">
+                  <label>Age :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="number" name="famille" #name="ngModel" [(ngModel)]="dinoService.selectedDino.famille" placeholder="Entrée le numéro de votre famille">
+                  <label>Famille :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="race" #name="ngModel" [(ngModel)]="dinoService.selectedDino.race" placeholder="Votre Race">
+                  <label>Race :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="nourriture" #name="ngModel" [(ngModel)]="dinoService.selectedDino.nourriture" placeholder="Ce que vous mangez">
+                  <label>Nourriture :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn btn-custom right" type="button" (click)="resetForm(dinoForm)">Reset</button>
+                  <button class="btn btn-custom right" type="submit" [disabled]="!dinoForm.valid">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s7">
+              <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Nom</th>
+                      <th>Age</th>
+                      <th>Famille</th>
+                      <th>Race</th>
+                      <th>Nourriture</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let di of dinoService.dinos">
+                    <td>{{di.fullName}}</td>
+                    <td>{{di.age}}</td>
+                    <td>{{di.famille}}</td>
+                    <td>{{di.race}}</td>
+                    <td>{{di.nourriture}}</td>
+                    <td>
+                        <a class="action-btn" (click)="onEdit(di)">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <a class="action-btn" (click)="onDel(di._id,dinoForm)">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
