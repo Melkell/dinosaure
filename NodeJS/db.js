@@ -8,3 +8,4 @@ mongoose.connect('mongodb://localhost:27017/dinoDatabase', { useNewUrlParser: tr
 });
 
 require('./models/dino')
+require('./models/user.model')

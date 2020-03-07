@@ -4,6 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 let { Dino } = require('../models/dino')
 
+
 router.get('/', (req, res) => {
     Dino.find((err, docs) => {
         if (!err) { res.send(docs); }
@@ -46,7 +47,7 @@ router.put('/:id', (req, res) => {
         race: req.body.race,
         nourriture: req.body.nourriture
     };
-    Dino.findByIdAndUpdate(req.params.id, { $set: di }, {new: true }, (err, doc) => {
+    Dino.findByIdAndUpdate(req.params.id, { $set: di }, { new: true }, (err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in Dino update :' + JSON.stringify(err, undefined, 2)) }
     })
@@ -60,6 +61,7 @@ router.delete('/:id', (req, res) => {
         else { console.log('Error in Dino delete :' + JSON.stringify(err, undefined, 2)) }
     })
 })
+
 
 module.exports = router;
 
