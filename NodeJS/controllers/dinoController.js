@@ -193,8 +193,17 @@ router.post('users/login', (req, res) => {
             res
                 .header('x-refresh-token', authTokens.refreshToken)
                 .header('x-access-token', authTokens.accessToken)
-                .send(newUser);
+                .send(User);
         })
+    }).catch((e) => {
+        res.status(400).send(e);
+    });
+})
+
+app.get('/users/me/access-token', verifySession, (req, res) => {
+    // we know that the user/caller is authenticated and we have the user_id and user object available to us
+    req.userObject.generateAccessAuthToken().then((accessToken) => {
+        res.header('x-access-token', accessToken).send({ accessToken });
     }).catch((e) => {
         res.status(400).send(e);
     });
